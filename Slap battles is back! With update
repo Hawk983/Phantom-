@@ -1,155 +1,230 @@
--- Load the Kavo UI Library
-local Library = loadstring(game:HttpGet("https://pastebin.com/raw/kFxTcrUf"))()
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
--- Create the main window with the title and theme
-local Window = Library.CreateLib("Phantom HUB | KEY SYSTEM", "DarkTheme")
+local Window = OrionLib:MakeWindow({
+    Name = "Phantom HUB | [UPDATE] SLAP BATTLES 👏",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "PhantomHubConfig",
+    IntroText = "Phantom Hub"
+})
 
--- Create a new tab in the window
-local Tab = Window:NewTab("Key System")
-
--- Create a section within the tab
-local Section = Tab:NewSection("Key")
-
--- Define the correct key
 local key = "Phantom2103"
+local isUnlocked = false
 
--- Variable to hold the user input key
-local key2
+OrionLib:MakeNotification({
+    Name = "Welcome to Phantom Hub",
+    Content = "Please enter the key to unlock the script.",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
 
--- Create a textbox in the section for entering the key
-Section:NewTextBox("Key", "Enter key", function(txt)
-    key2 = txt -- Store the user input in key2
-end)
+local KeyTab = Window:MakeTab({
+    Name = "Key",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 
--- Create a button in the section to check the entered key
-Section:NewButton("Check Key", "Checks your key", function()
-    if key2 == key then
-        print('Key is real')
-    else
-        print('Fake key')
+KeyTab:AddTextbox({
+    Name = "Enter Key",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(value)
+        if value == key then
+            isUnlocked = true
+            OrionLib:MakeNotification({
+                Name = "Success",
+                Content = "Key is correct! Script unlocked.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        else
+            OrionLib:MakeNotification({
+                Name = "Error",
+                Content = "Incorrect key. Please try again.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
     end
-end)
+})
 
--- Define the Discord link
-local discordLink = "https://discord.com/invite/tavSwsKaBU"
+KeyTab:AddButton({
+    Name = "Copy Discord Link",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        OrionLib:MakeNotification({
+            Name = "Copied",
+            Content = "Discord link copied to clipboard.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+})
 
--- Create a button in the section to copy the Discord link
-Section:NewButton("Copy Discord Link", "Copies the Discord link to your clipboard", function()
-    setclipboard(discordLink) -- Copies the Discord link to the clipboard
-    print('Discord link copied to clipboard')
-end)
+local CreditsTab = Window:MakeTab({
+    Name = "Credits",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 
--- Gui to Lua
--- Version: 3.2
+CreditsTab:AddLabel("Owner - Hawk")
+CreditsTab:AddLabel("Phantom Hub")
+CreditsTab:AddLabel("Hello Fix Bugs Report In Discord")
 
--- Instances:
+CreditsTab:AddButton({
+    Name = "Copy Discord Link",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        OrionLib:MakeNotification({
+            Name = "Copied",
+            Content = "Discord link copied to clipboard.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+})
 
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local TextButton = Instance.new("TextButton")
-local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local MainTab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 
---Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-Frame.BackgroundTransparency = 0.500
-Frame.Position = UDim2.new(0.858712733, 0, 0.0237762257, 0)
-Frame.Size = UDim2.new(0.129513338, 0, 0.227972031, 0)
-
-TextButton.Parent = Frame
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BackgroundTransparency = 1.000
-TextButton.Size = UDim2.new(1, 0, 1, 0)
-TextButton.Font = Enum.Font.SourceSans
-TextButton.Text = "ToggleUI"
-TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.TextScaled = true
-TextButton.TextSize = 50.000
-TextButton.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.TextStrokeTransparency = 0.000
-TextButton.TextWrapped = true
-TextButton.MouseButton1Down:Connect(function()
-	game:GetService("VirtualInputManager"):SendKeyEvent(true, "K" , false , game)
-end)
-
-UITextSizeConstraint.Parent = TextButton
-UITextSizeConstraint.MaxTextSize = 30
-
-
-local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
-local Window = Library.CreateLib("Phantom Hub | [🖐UPDATE] Slap Battles👏", "BloodTheme")
-local Tab = Window:NewTab("Slap battles")
-local Section = Tab:NewSection("Slap battles")
-Section:NewButton("Slap battles Hub", "ButtonInfo", function()
-loadstring(game:HttpGet("https://scriptblox.com/raw/Slap-Battles-Open-source-for-9484"))()
-
-    print("Clicked")
-end)
-Section:NewButton("Glove abuser gui", "ButtonInfo", function()
---MultiGlovAbuseBetaDonjo
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/Donjosx/SlapBattle_Scripts/main/Glove-Multi%20Abuser%20Beta%20version")))()
-
-    print("Clicked")
-end)
-Section:NewButton("Lag server", "ButtonInfo", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/destsecretplace/main/FELagServer.lua"))()
-
-    print("Clicked")
-end)
-Section:NewButton("Destroyer Hub 🔥", "ButtonInfo", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Usehsbd/DestroyerHub/main/DestHubPublic"))()
-
-    print("Clicked")
-end)
-Section:NewButton("Slap battles that exists 🔥", "ButtonInfo", function()
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles")))()
-
-    print("Clicked")
-end)
-Section:NewButton("Gaster Hub 🔥", "ButtonInfo", function()
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/Dusty1234567890/TestMain/main/SLAPBATTLESGUI5")))()
-
-    print("Clicked")
-end)
-Section:NewButton("Destroyer Hub X🔥", "ButtonInfo", function()
-loadstring(game:HttpGet("https://pastefy.app/lNrtZovg/raw"))()
-
-    print("Clicked")
-end)
-local Tab = Window:NewTab("Badge giver")
-local Section = Tab:NewSection("Badge giver")
-Section:NewButton("Gaster hub ", "ButtonInfo", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/Null-zone3/main/Null%20zone"))()
-
-    print("Clicked")
-end)
-Section:NewButton("Spoonful glove ", "You need tycoon Glove", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/destsecretplace/main/SpoonfulScript.lua"))()
-
-    print("Clicked")
+local function checkUnlock(callback)
+    return function(...)
+        if isUnlocked then
+            callback(...)
+        else
+            OrionLib:MakeNotification({
+                Name = "Locked",
+                Content = "Please enter the correct key to unlock.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
+    end
 end
-Section:NewButton("Bob farm 🔥 " , "You need tycoon Glove", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Aquoupi/DestroyerX/main/UltraBobFarm.lua"))()
 
-    print("Clicked")
-end)
-local Tab = Window:NewTab("Farm")
-local Section = Tab:NewSection("Farming Scripts")
-Section:NewButton("Farm Scripts", "ButtonInfo", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Aquoupi/DestroyerX/main/OtherSBScripts/FastFarmv2.lua"))()
+MainTab:AddButton({
+    Name = "Slap Battles Hub",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://scriptblox.com/raw/Slap-Battles-Open-source-for-9484"))()
+    end)
+})
 
-    print("Clicked")
-end)
-Section:NewButton("Farm Script v2", "ButtonInfo", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/SBScript/main/SlappleFarmv2.lua"))()
+MainTab:AddButton({
+    Name = "Glove Abuser GUI",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Donjosx/SlapBattle_Scripts/main/Glove-Multi%20Abuser%20Beta%20version"))()
+    end)
+})
 
-    print("Clicked")
-end)
+MainTab:AddButton({
+    Name = "Lag Server",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/destsecretplace/main/FELagServer.lua"))()
+    end)
+})
 
-Section:NewKeybind("DONOTCHANGE", "DONOTCHANGE", Enum.KeyCode.K, function()
-	Library:ToggleUI()
-end)
+MainTab:AddButton({
+    Name = "Destroyer Hub 🔥",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Usehsbd/DestroyerHub/main/DestHubPublic"))()
+    end)
+})
+
+MainTab:AddButton({
+    Name = "Slap Battles That Exists 🔥",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles"))()
+    end)
+})
+
+MainTab:AddButton({
+    Name = "Gaster Hub 🔥",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/TestMain/main/SLAPBATTLESGUI5"))()
+    end)
+})
+
+MainTab:AddButton({
+    Name = "Destroyer Hub X🔥",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://pastefy.app/lNrtZovg/raw"))()
+    end)
+})
+
+local BadgeTab = Window:MakeTab({
+    Name = "Badge Giver",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+BadgeTab:AddButton({
+    Name = "Gaster Hub",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/Null-zone3/main/Null%20zone"))()
+    end)
+})
+
+BadgeTab:AddButton({
+    Name = "Spoonful Glove",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/destsecretplace/main/SpoonfulScript.lua"))()
+    end)
+})
+
+BadgeTab:AddButton({
+    Name = "Bob Farm 🔥",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Aquoupi/DestroyerX/main/UltraBobFarm.lua"))()
+    end)
+})
+
+local FarmTab = Window:MakeTab({
+    Name = "Farm",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+FarmTab:AddButton({
+    Name = "Farm Scripts",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Aquoupi/DestroyerX/main/OtherSBScripts/FastFarmv2.lua"))()
+    end)
+})
+
+FarmTab:AddButton({
+    Name = "Farm Script v2",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/SBScript/main/SlappleFarmv2.lua"))()
+    end)
+})
+
+CreditsTab:AddButton({
+    Name = "Orion Lib",
+    Callback = function()
+        print("Orion Lib button pressed")
+    end
+})
+
+CreditsTab:AddButton({
+    Name = "Destroy UI",
+    Callback = function()
+        OrionLib:Destroy()
+    end
+})
+
+-- Keybind to toggle UI
+OrionLib:MakeTab({
+    Name = "Settings",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+}):AddKeybind({
+    Name = "Toggle UI",
+    Default = Enum.KeyCode.K,
+    Hold = false,
+    Callback = function()
+        OrionLib:ToggleUI()
+    end
+})
