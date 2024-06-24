@@ -1,0 +1,242 @@
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+
+local Window = OrionLib:MakeWindow({
+    Name = "Phantom Hub | Strongest Battleground",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "PhantomHubConfig",
+    IntroText = "Phantom Hub"
+})
+
+local encodedKey = "NzI2MzgyNg==" -- Base64 encoded key (7263826)
+local isUnlocked = false
+
+local function decodeKey(encoded)
+    local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+    local data = string.gsub(encoded, '[^'..b..'=]', '')
+    return (data:gsub('.', function(x)
+        if (x == '=') then return '' end
+        local r,f='',(b:find(x)-1)
+        for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end
+        return r;
+    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
+        if (#x ~= 8) then return '' end
+        local c=0
+        for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end
+        return string.char(c)
+    end))
+end
+
+local function makeNotification(title, content, image, time)
+    OrionLib:MakeNotification({
+        Title = title,
+        Content = content,
+        Image = image,
+        Time = time
+    })
+end
+
+makeNotification("Welcome to Phantom Hub", "Please enter the key to unlock the script.", "rbxassetid://4483345998", 5)
+
+local KeyTab = Window:MakeTab({
+    Name = "Key",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+KeyTab:AddTextbox({
+    Name = "Enter Key",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(value)
+        if value == decodeKey(encodedKey) then
+            isUnlocked = true
+            makeNotification("Success", "Key is correct! Script unlocked.", "rbxassetid://4483345998", 5)
+        else
+            makeNotification("Error", "Incorrect key. Please try again.", "rbxassetid://4483345998", 5)
+        end
+    end
+})
+
+KeyTab:AddButton({
+    Name = "Copy Discord Link",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        makeNotification("Copied", "Discord link copied to clipboard.", "rbxassetid://4483345998", 5)
+    end
+})
+
+local MainTab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local function checkUnlock(callback)
+    return function(...)
+        if isUnlocked then
+            callback(...)
+        else
+            makeNotification("Locked", "Please enter the correct key to unlock.", "rbxassetid://4483345998", 5)
+        end
+    end
+end
+
+MainTab:AddButton({
+    Name = "No/Less Stun [Click Once]",
+    Callback = checkUnlock(function()
+        local tspeed = 0.3
+        local hb = game:GetService("RunService").Heartbeat
+        local tpwalking = true
+        local player = game:GetService("Players").LocalPlayer
+        local chr = player.Character
+        
+        while tpwalking and hb:Wait() and chr and chr.Parent do
+            local hum = chr:FindFirstChildOfClass("Humanoid")
+            if hum and hum.MoveDirection.Magnitude > 0 then
+                if tspeed and tonumber(tspeed) then
+                    chr:TranslateBy(hum.MoveDirection * tonumber(tspeed))
+                else
+                    chr:TranslateBy(hum.MoveDirection)
+                end
+            end
+        end
+    end)
+})
+
+MainTab:AddButton({
+    Name = "Reach",
+    Callback = checkUnlock(function()
+        print("Reach Value 69")
+    end)
+})
+
+MainTab:AddButton({
+    Name = "Camera Lock",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet('https://rentry.co/forkoritothegoat/raw'))()
+    end)
+})
+
+MainTab:AddButton({
+    Name = "Infinite Yield",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end)
+})
+
+MainTab:AddButton({
+    Name = "Esp",
+    Callback = checkUnlock(function()
+        local Players = game:GetService("Players")
+        local RunService = game:GetService("RunService")
+        
+        local function createBox()
+            local box = Instance.new("BoxHandleAdornment")
+            box.Size = Vector3.new(5, 5, 2)
+            box.Color3 = Color3.new(1, 0, 0)
+            box.Transparency = 0.1
+            box.ZIndex = 5
+            return box
+        end
+        
+        local function updateEsp(player, box)
+            local character = player.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                box.Visible = true
+                box.Adornee = character.HumanoidRootPart
+                box.Parent = character.HumanoidRootPart
+            else
+                box.Visible = false
+                box.Adornee = nil
+                box.Parent = nil
+            end
+        end
+        
+        local function onPlayerAdded(player)
+            local box = createBox()
+            updateEsp(player, box)
+            
+            player.CharacterAdded:Connect(function()
+                updateEsp(player, box)
+            end)
+            
+            player.CharacterRemoving:Connect(function()
+                updateEsp(player, box)
+            end)
+        end
+        
+        for _, player in ipairs(Players:GetPlayers()) do
+            onPlayerAdded(player)
+        end
+        
+        Players.PlayerAdded:Connect(function(player)
+            onPlayerAdded(player)
+        end)
+        
+        RunService.RenderStepped:Connect(function()
+            for _, player in ipairs(Players:GetPlayers()) do
+                updateEsp(player)
+            end
+        end)
+    end)
+})
+
+local MainHubTab = Window:MakeTab({
+    Name = "Main Hub",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+MainHubTab:AddButton({
+    Name = "Killer Hub",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/74w2zF6p/raw", true))()
+    end
+})
+
+MainHubTab:AddButton({
+    Name = "BEDOL HUB",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/New-C4-Remote.lua/main/TSBG.jsx"))()
+    end)
+})
+
+MainHubTab:AddButton({
+    Name = "Light tux",
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/zx3081xc'))()
+    end)
+})
+
+local CreditsTab = Window:MakeTab({
+    Name = "Credits",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+CreditsTab:AddLabel("Owner - Hawk")
+CreditsTab:AddLabel("Phantom Hub")
+CreditsTab:AddLabel("Hello Fix Bugs Report In Discord")
+
+CreditsTab:AddButton({
+    Name = "Copy Discord Link",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        makeNotification("Copied", "Discord link copied to clipboard.", "rbxassetid://4483345998", 5)
+    end
+})
+
+CreditsTab:AddButton({
+    Name = "Orion Lib",
+    Callback = function()
+        print("Orion Lib button pressed")
+    end)
+})
+
+CreditsTab:AddButton({
+    Name = "Destroy Ui",
+    Callback = function()
+        OrionLib:Destroy()
+    end)
+})
