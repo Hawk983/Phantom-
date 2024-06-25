@@ -1,0 +1,37 @@
+-- Example encryption function (simplified)
+local function encryptString(str)
+    local encryptedStr = ""
+    for i = 1, #str do
+        local byte = string.byte(str, i)
+        encryptedStr = encryptedStr .. string.format("\\%03d", byte)
+    end
+    return encryptedStr
+end
+
+-- Encrypted data
+local encryptedOrionLibUrl = "h\\116\\116\\112\\115\\058\\047\\047\\047\\114\\101\\097\\108\\103\\097\\109\\101\\046\\099\\111\\109\\047\\115\\104\\108\\101\\120\\119\\097\\114\\101\\047\\079\\114\\105\\111\\110\\047\\109\\097\\105\\110\\047\\115\\111\\117\\114\\099\\101"
+
+-- Decrypting and executing
+local function decryptAndExecute(encryptedCode)
+    local decryptedCode = ""
+    for code in string.gmatch(encryptedCode, "\\%d%d%d") do
+        local byte = tonumber(code:sub(2))
+        decryptedCode = decryptedCode .. string.char(byte)
+    end
+    loadstring(decryptedCode)() -- Execute decrypted code
+end
+
+-- Decrypt and execute OrionLib
+local decryptedOrionLib = decryptAndExecute(encryptedOrionLibUrl)
+
+-- Using decrypted OrionLib
+local Window = decryptedOrionLib:MakeWindow({
+    Name = "Phantom Hub | Strongest Battleground",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "PhantomHubConfig",
+    IntroText = "Phantom Hub"
+})
+
+-- Define other encrypted parts and decryption logic similarly...
+-- Ensure decryption and execution are handled securely and correctly.
