@@ -8,7 +8,7 @@ local Window = OrionLib:MakeWindow({
     IntroText = "Phantom Hub"
 })
 
-local key = "7263826"
+local key = "Phantom2024"
 local isUnlocked = false
 
 OrionLib:MakeNotification({
