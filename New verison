@@ -1,51 +1,36 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({
+local a = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+local b = a:MakeWindow({
     Name = "Phantom HUB | STRONGEST BATTLEGROUND",
     HidePremium = false,
     SaveConfig = true,
-    ConfigFolder = "PhantomHubConfig"
+    ConfigFolder = "PhantomHubConfig",
+    IntroText = "Phantom Hub"
 })
 
-local isUnlocked = false
 local key = "Phantom1898"
+local isUnlocked = false
 
--- Key Tab
-local KeyTab = Window:MakeTab({
+local c = b:MakeTab({
     Name = "Key",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local function checkUnlock(callback)
-    return function(...)
-        if isUnlocked then
-            callback(...)
-        else
-            OrionLib:MakeNotification({
-                Title = "Locked",
-                Content = "Please enter the correct key to unlock.",
-                Image = "rbxassetid://4483345998",
-                Time = 5
-            })
-        end
-    end
-end
-
-KeyTab:AddTextbox({
+c:AddTextbox({
     Name = "Enter Key",
     Default = "",
     TextDisappear = true,
-    Callback = function(value)
-        if value == key then
+    Callback = function(d)
+        if d == key then
             isUnlocked = true
-            OrionLib:MakeNotification({
+            a:MakeNotification({
                 Title = "Success",
                 Content = "Key is correct! Script unlocked.",
                 Image = "rbxassetid://4483345998",
                 Time = 5
             })
         else
-            OrionLib:MakeNotification({
+            a:MakeNotification({
                 Title = "Error",
                 Content = "Incorrect key. Please try again.",
                 Image = "rbxassetid://4483345998",
@@ -55,11 +40,11 @@ KeyTab:AddTextbox({
     end
 })
 
-KeyTab:AddButton({
+c:AddButton({
     Name = "Copy Discord Link",
     Callback = function()
         setclipboard("https://discord.com/invite/ZwBTD6kvwa")
-        OrionLib:MakeNotification({
+        a:MakeNotification({
             Title = "Copied",
             Content = "Discord link copied to clipboard.",
             Image = "rbxassetid://4483345998",
@@ -68,279 +53,319 @@ KeyTab:AddButton({
     end
 })
 
--- Main Tab
-local MainTab = Window:MakeTab({
+local e = b:MakeTab({
     Name = "Main",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-MainTab:AddButton({
+local function f(g)
+    return function(...)
+        if isUnlocked then
+            g(...)
+        else
+            a:MakeNotification({
+                Title = "Locked",
+                Content = "Please enter the correct key to unlock.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
+    end
+end
+
+e:AddButton({
     Name = "No/Less Stun [Click Once]",
-    Callback = checkUnlock(function()
-        -- Insert your function here
+    Callback = f(function()
+        local h = 0.3
+        local i = game:GetService("RunService").Heartbeat
+        local j = true
+        local k = game:GetService("Players").LocalPlayer
+        local l = k.Character
+        
+        while j and i:Wait() and l and l.Parent do
+            local m = l:FindFirstChildOfClass("Humanoid")
+            if m and m.MoveDirection.Magnitude > 0 then
+                if h and tonumber(h) then
+                    l:TranslateBy(m.MoveDirection * tonumber(h))
+                else
+                    l:TranslateBy(m.MoveDirection)
+                end
+            end
+        end
     end)
 })
 
-MainTab:AddButton({
+e:AddButton({
     Name = "Reach",
-    Callback = checkUnlock(function()
-        -- Insert your function here
+    Callback = f(function()
+        print("Reach Value 69")
     end)
 })
 
-MainTab:AddButton({
+e:AddButton({
     Name = "Camera Lock",
-    Callback = checkUnlock(function()
-        -- Insert your function here
+    Callback = f(function()
+        loadstring(game:HttpGet('https://rentry.co/forkoritothegoat/raw'))()
     end)
 })
 
-MainTab:AddButton({
+e:AddButton({
     Name = "Infinite Yield",
-    Callback = checkUnlock(function()
-        -- Insert your function here
+    Callback = f(function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
     end)
 })
 
-MainTab:AddButton({
+e:AddButton({
     Name = "Esp",
-    Callback = checkUnlock(function()
-        -- Insert your function here
+    Callback = f(function()
+        local n = game:GetService("Players")
+        local o = game:GetService("RunService")
+
+        local function p()
+            local q = Instance.new("BoxHandleAdornment")
+            q.Size = Vector3.new(5, 5, 2)
+            q.Color3 = Color3.new(1, 0, 0)
+            q.Transparency = 0.1
+            q.ZIndex = 5
+            return q
+        end
+
+        local function r(s, t)
+            local u = s.Character
+            if u and u:FindFirstChild("HumanoidRootPart") then
+                t.Visible = true
+                t.Adornee = u.HumanoidRootPart
+                t.Parent = u.HumanoidRootPart
+            else
+                t.Visible = false
+                t.Adornee = nil
+                t.Parent = nil
+            end
+        end
+
+        local function v(w)
+            local x = p()
+            r(w, x)
+
+            w.CharacterAdded:Connect(function()
+                r(w, x)
+            end)
+
+            w.CharacterRemoving:Connect(function()
+                r(w, x)
+            end)
+        end
+
+        for _, y in ipairs(n:GetPlayers()) do
+            v(y)
+        end
+
+        n.PlayerAdded:Connect(function(z)
+            v(z)
+        end)
+
+        o.RenderStepped:Connect(function()
+            for _, A in ipairs(n:GetPlayers()) do
+                if A.Character then
+                    local B = A.Character:FindFirstChildOfClass("BoxHandleAdornment")
+                    if B then
+                        r(A, B)
+                    end
+                end
+            end
+        end)
     end)
 })
 
--- Anti Tab
-local AntiTab = Window:MakeTab({
+local C = b:MakeTab({
+    Name = "Main Hub",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+C:AddButton({
+    Name = "Killer Hub",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/74w2zF6p/raw", true))()
+    end
+})
+
+C:AddButton({
+    Name = "BEDOL HUB",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/New-C4-Remote.lua/main/TSBG.jsx"))()
+    end
+})
+
+C:AddButton({
+    Name = "Light tux",
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/zx3081xc'))()
+    end
+})
+
+local D = b:MakeTab({
     Name = "Anti",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local function toggleAntiRagdoll(Value)
-    if isUnlocked then
-        _G.antiragdol = Value
-        local RunS = game:GetService("RunService")
-        local connection
-        connection = RunS.RenderStepped:Connect(function()
-            if _G.antiragdol == true then
-                if game.Players.LocalPlayer.Character:FindFirstChild("RagdollSim") and _G.antiragdol == true then
-                    game.Players.LocalPlayer.Character.RagdollSim:Destroy()
-                    game.Players.LocalPlayer.Character.Ragdoll:Destroy()
-                end
-            end
-        end)
-    else
-        OrionLib:MakeNotification({
-            Title = "Locked",
-            Content = "Please enter the correct key to unlock Anti features.",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-    end
-end
-
-local function toggleAntiFreeze(Value)
-    if isUnlocked then
-        _G.antifreeze = Value
-        local RunS = game:GetService("RunService")
-        local connection
-        connection = RunS.RenderStepped:Connect(function()
-            if _G.antifreeze == true then
-                if game.Players.LocalPlayer.Character:FindFirstChild("Freeze") and _G.antifreeze == true then
-                    game.Players.LocalPlayer.Character.Freeze:Destroy()
-                end
-            end
-        end)
-    else
-        OrionLib:MakeNotification({
-            Title = "Locked",
-            Content = "Please enter the correct key to unlock Anti features.",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-    end
-end
-
-local function toggleAntiSlowed(Value)
-    if isUnlocked then
-        _G.antislowed = Value
-        local RunS = game:GetService("RunService")
-        local connection
-        connection = RunS.RenderStepped:Connect(function()
-            if _G.antislowed == true then
-                if game.Players.LocalPlayer.Character:FindFirstChild("Slowed") and _G.antislowed == true then
-                    game.Players.LocalPlayer.Character.Slowed:Destroy()
-                end
-            end
-        end)
-    else
-        OrionLib:MakeNotification({
-            Title = "Locked",
-            Content = "Please enter the correct key to unlock Anti features.",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-    end
-end
-
-local function toggleAntiStopRunning(Value)
-    if isUnlocked then
-        _G.antiStopRunning = Value
-        local RunS = game:GetService("RunService")
-        local connection
-        connection = RunS.RenderStepped:Connect(function()
-            if _G.antiStopRunning == true then
-                if game.Players.LocalPlayer.Character:FindFirstChild("StopRunning") and _G.antiStopRunning == true then
-                    game.Players.LocalPlayer.Character.StopRunning:Destroy()
-                end
-            end
-        end)
-    else
-        OrionLib:MakeNotification({
-            Title = "Locked",
-            Content = "Please enter the correct key to unlock Anti features.",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-    end
-end
-
-local function toggleAntiNoJump(Value)
-    if isUnlocked then
-        _G.antiNoJump = Value
-        local RunS = game:GetService("RunService")
-        local connection
-        connection = RunS.RenderStepped:Connect(function()
-            if _G.antiNoJump == true then
-                if game.Players.LocalPlayer.Character:FindFirstChild("NoJump") and _G.antiNoJump == true then
-                    game.Players.LocalPlayer.Character.NoJump:Destroy()
-                end
-            end
-        end)
-    else
-        OrionLib:MakeNotification({
-            Title = "Locked",
-            Content = "Please enter the correct key to unlock Anti features.",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-    end
-end
-
-local function toggleAntiNoBlock(Value)
-    if isUnlocked then
-        _G.antiNoBlock = Value
-        local RunS = game:GetService("RunService")
-        local connection
-        connection = RunS.RenderStepped:Connect(function()
-            if _G.antiNoBlock == true then
-                if game.Players.LocalPlayer.Character:FindFirstChild("NoBlock") and _G.antiNoBlock == true then
-                    game.Players.LocalPlayer.Character.NoBlock:Destroy()
-                end
-            end
-        end)
-    else
-        OrionLib:MakeNotification({
-            Title = "Locked",
-            Content = "Please enter the correct key to unlock Anti features.",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-    end
-end
-
-local function toggleAntiCounter(Value)
-    if isUnlocked then
-        _G.anticounter = Value
-        local Players = game:GetService("Players")
-        local RunService = game:GetService("RunService")
-        
-        local function toggleAntiCounterForPlayer(player)
-            if player.Character and player.Character:FindFirstChild("Counter") then
-                player.Character.Counter:Destroy()
-            end
-        end
-        
-        local function onPlayerAdded(player)
-            player.CharacterAdded:Connect(function()
-                toggleAntiCounterForPlayer(player)
-            end)
-            toggleAntiCounterForPlayer(player)
-        end
-        
-        Players.PlayerAdded:Connect(onPlayerAdded)
-        for _, player in ipairs(Players:GetPlayers()) do
-            onPlayerAdded(player)
-        end
-    else
-        OrionLib:MakeNotification({
-            Title = "Locked",
-            Content = "Please enter the correct key to unlock Anti features.",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-    end
-end
-
-AntiTab:AddToggle({
+D:AddToggle({
     Name = "Anti Ragdoll",
     Default = false,
-    Callback = toggleAntiRagdoll
+    Callback = f(function(E)
+        _G.antiragdoll = E
+        local F = game:GetService("RunService")
+        local G
+        G = F.RenderStepped:Connect(function()
+            if _G.antiragdoll == true then
+                local H = game.Players.LocalPlayer.Character
+                if H and H:FindFirstChild("RagdollSim") then
+                    H.RagdollSim:Destroy()
+                    if H:FindFirstChild("Ragdoll") then
+                        H.Ragdoll:Destroy()
+                    end
+                end
+            end
+        end)
+    end)
 })
 
-AntiTab:AddToggle({
+D:AddToggle({
     Name = "Anti Freeze",
     Default = false,
-    Callback = toggleAntiFreeze
+    Callback = f(function(I)
+        _G.antifreeze = I
+        local J = game:GetService("RunService")
+        local K
+        K = J.RenderStepped:Connect(function()
+            if _G.antifreeze == true then
+                local L = game.Players.LocalPlayer.Character
+                if L and L:FindFirstChild("Freeze") then
+                    L.Freeze:Destroy()
+                end
+            end
+        end)
+    end)
 })
 
-AntiTab:AddToggle({
+D:AddToggle({
     Name = "Anti Slowed",
     Default = false,
-    Callback = toggleAntiSlowed
+    Callback = f(function(M)
+        _G.antislowed = M
+        local N = game:GetService("RunService")
+        local O
+        O = N.RenderStepped:Connect(function()
+            if _G.antislowed == true then
+                local P = game.Players.LocalPlayer.Character
+                if P and P:FindFirstChild("Slowed") then
+                    P.Slowed:Destroy()
+                end
+            end
+        end)
+    end)
 })
 
-AntiTab:AddToggle({
+D:AddToggle({
     Name = "Anti StopRunning",
     Default = false,
-    Callback = toggleAntiStopRunning
+    Callback = f(function(Q)
+        _G.antiStopRunning = Q
+        local R = game:GetService("RunService")
+        local S
+        S = R.RenderStepped:Connect(function()
+            if _G.antiStopRunning == true then
+                local T = game.Players.LocalPlayer.Character
+                if T and T:FindFirstChild("StopRunning") then
+                    T.StopRunning:Destroy()
+                end
+            end
+        end)
+    end)
 })
 
-AntiTab:AddToggle({
+D:AddToggle({
     Name = "Anti NoJump",
     Default = false,
-    Callback = toggleAntiNoJump
+    Callback = f(function(U)
+        _G.antiNoJump = U
+        local V = game:GetService("RunService")
+        local W
+        W = V.RenderStepped:Connect(function()
+            if _G.antiNoJump == true then
+                local X = game.Players.LocalPlayer.Character
+                if X and X:FindFirstChild("NoJump") then
+                    X.NoJump:Destroy()
+                end
+            end
+        end)
+    end)
 })
 
-AntiTab:AddToggle({
+D:AddToggle({
     Name = "Anti NoBlock",
     Default = false,
-    Callback = toggleAntiNoBlock
+    Callback = f(function(Y)
+        _G.antiNoBlock = Y
+        local Z = game:GetService("RunService")
+        local AA
+        AA = Z.RenderStepped:Connect(function()
+            if _G.antiNoBlock == true then
+                local AB = game.Players.LocalPlayer.Character
+                if AB and AB:FindFirstChild("NoBlock") then
+                    AB.NoBlock:Destroy()
+                end
+            end
+        end)
+    end)
 })
 
-AntiTab:AddToggle({
+D:AddToggle({
     Name = "Anti Counter",
     Default = false,
-    Callback = toggleAntiCounter
+    Callback = f(function(AC)
+        _G.anticounter = AC
+        local AD = game:GetService("Players")
+        local AE = game:GetService("RunService")
+
+        local function AF(AG)
+            if AG.Character and AG.Character:FindFirstChild("Counter") then
+                AG.Character.Counter:Destroy()
+            end
+        end
+
+        local function AH(AI)
+            AI.CharacterAdded:Connect(function()
+                AF(AI)
+            end)
+            AF(AI)
+        end
+
+        AD.PlayerAdded:Connect(AH)
+        for _, AJ in ipairs(AD:GetPlayers()) do
+            AH(AJ)
+        end
+    end)
 })
 
--- Credits Tab
-local CreditsTab = Window:MakeTab({
+local AK = b:MakeTab({
     Name = "Credits",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-CreditsTab:AddLabel("Owner - Hawk")
-CreditsTab:AddLabel("Phantom Hub")
-CreditsTab:AddLabel("Hello Fix Bugs Report In Discord")
+AK:AddLabel("Owner - Hawk")
+AK:AddLabel("Phantom Hub")
+AK:AddLabel("Hello Fix Bugs Report In Discord")
 
-CreditsTab:AddButton({
+AK:AddButton({
     Name = "Copy Discord Link",
     Callback = function()
         setclipboard("https://discord.com/invite/ZwBTD6kvwa")
-        OrionLib:MakeNotification({
+        a:MakeNotification({
             Title = "Copied",
             Content = "Discord link copied to clipboard.",
             Image = "rbxassetid://4483345998",
@@ -348,5 +373,3 @@ CreditsTab:AddButton({
         })
     end
 })
-
-
