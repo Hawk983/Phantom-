@@ -43,8 +43,8 @@ local d = b:MakeTab({
 })
 
 d:AddTextbox({
-    Name = "Enter Key",
-    Default = "",
+    Name = "Phantom1898",
+    Default = "Key System",
     TextDisappear = true,
     Callback = function(e)
         if e == key then
@@ -69,7 +69,7 @@ d:AddTextbox({
 d:AddButton({
     Name = "Copy Discord Link",
     Callback = function()
-        setclipboard(discordURL)
+        setclipboard(https://discord.com/invite/UrECA9erax)
         a:MakeNotification({
             Title = "Copied",
             Content = "Discord link copied to clipboard.",
@@ -394,7 +394,7 @@ al:AddLabel("Hello Fix Bugs Report In Discord")
 al:AddButton({
     Name = "Copy Discord Link",
     Callback = function()
-        setclipboard(discordURL)
+        setclipboard(https://discord.com/invite/UrECA9erax)
         a:MakeNotification({
             Title = "Copied",
             Content = "Discord link copied to clipboard.",
