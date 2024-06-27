@@ -1,0 +1,395 @@
+local a = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local b = a:MakeWindow({
+    Name = "Phantom HUB | STRONGEST BATTLEGROUND",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "PhantomHubConfig"
+})
+
+local c = false
+local d = "Phantom1898"
+
+local e = b:MakeTab({
+    Name = "Key",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local function f(g)
+    return function(...)
+        if c then
+            g(...)
+        else
+            a:MakeNotification({
+                Title = "Locked",
+                Content = "Please enter the correct key to unlock.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
+    end
+end
+
+e:AddTextbox({
+    Name = "Enter Key",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(h)
+        if h == d then
+            c = true
+            a:MakeNotification({
+                Title = "Success",
+                Content = "Key is correct! Script unlocked.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        else
+            a:MakeNotification({
+                Title = "Error",
+                Content = "Incorrect key. Please try again.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
+    end
+})
+
+e:AddButton({
+    Name = "Copy Discord Link",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        a:MakeNotification({
+            Title = "Copied",
+            Content = "Discord link copied to clipboard.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+})
+
+local i = b:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+i:AddButton({
+    Name = "No/Less Stun [Click Once]",
+    Callback = f(function()
+        -- Insert your function here
+    end)
+})
+
+i:AddButton({
+    Name = "Reach",
+    Callback = f(function()
+        -- Insert your function here
+    end)
+})
+
+i:AddButton({
+    Name = "Camera Lock",
+    Callback = f(function()
+        -- Insert your function here
+    end)
+})
+
+i:AddButton({
+    Name = "Infinite Yield",
+    Callback = f(function()
+        -- Insert your function here
+    end)
+})
+
+i:AddButton({
+    Name = "Esp",
+    Callback = f(function()
+        -- Insert your function here
+    end)
+})
+
+local j = b:MakeTab({
+    Name = "Anti",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local function k(l)
+    if c then
+        _G.antiragdol = l
+        local m = game:GetService("RunService")
+        local n
+        n = m.RenderStepped:Connect(function()
+            if _G.antiragdol == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("RagdollSim") and _G.antiragdol == true then
+                    game.Players.LocalPlayer.Character.RagdollSim:Destroy()
+                    game.Players.LocalPlayer.Character.Ragdoll:Destroy()
+                end
+            end
+        end)
+    else
+        a:MakeNotification({
+            Title = "Locked",
+            Content = "Please enter the correct key to unlock Anti features.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+end
+
+local function o(p)
+    if c then
+        _G.antifreeze = p
+        local q = game:GetService("RunService")
+        local r
+        r = q.RenderStepped:Connect(function()
+            if _G.antifreeze == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("Freeze") and _G.antifreeze == true then
+                    game.Players.LocalPlayer.Character.Freeze:Destroy()
+                end
+            end
+        end)
+    else
+        a:MakeNotification({
+            Title = "Locked",
+            Content = "Please enter the correct key to unlock Anti features.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+end
+
+local function s(t)
+    if c then
+        _G.antislowed = t
+        local u = game:GetService("RunService")
+        local v
+        v = u.RenderStepped:Connect(function()
+            if _G.antislowed == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("Slowed") and _G.antislowed == true then
+                    game.Players.LocalPlayer.Character.Slowed:Destroy()
+                end
+            end
+        end)
+    else
+        a:MakeNotification({
+            Title = "Locked",
+            Content = "Please enter the correct key to unlock Anti features.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+end
+
+local function w(x)
+    if c then
+        _G.antiStopRunning = x
+        local y = game:GetService("RunService")
+        local z
+        z = y.RenderStepped:Connect(function()
+            if _G.antiStopRunning == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("StopRunning") and _G.antiStopRunning == true then
+                    game.Players.LocalPlayer.Character.StopRunning:Destroy()
+                end
+            end
+        end)
+    else
+        a:MakeNotification({
+            Title = "Locked",
+            Content = "Please enter the correct key to unlock Anti features.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+end
+
+local function A(B)
+    if c then
+        _G.antiNoJump = B
+        local C = game:GetService("RunService")
+        local D
+        D = C.RenderStepped:Connect(function()
+            if _G.antiNoJump == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("NoJump") and _G.antiNoJump == true then
+                    game.Players.LocalPlayer.Character.NoJump:Destroy()
+                end
+            end
+        end)
+    else
+        a:MakeNotification({
+            Title = "Locked",
+            Content = "Please enter the correct key to unlock Anti features.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+end
+
+local function E(F)
+    if c then
+        _G.antiNoBlock = F
+        local G = game:GetService("RunService")
+        local H
+        H = G.RenderStepped:Connect(function()
+            if _G.antiNoBlock == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("NoBlock") and _G.antiNoBlock == true then
+                    game.Players.LocalPlayer.Character.NoBlock:Destroy()
+                end
+            end
+        end)
+    else
+        a:MakeNotification({
+            Title = "Locked",
+            Content = "Please enter the correct key to unlock Anti features.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+end
+
+local function I(J)
+    if c then
+        _G.anticounter = J
+        local K = game:GetService("Players")
+        local L = game:GetService("RunService")
+        
+        local function M(N)
+            if N.Character and N.Character:FindFirstChild("Counter") then
+                N.Character.Counter:Destroy()
+            end
+        end
+        
+        local function O(P)
+            P.CharacterAdded:Connect(function()
+                M(P)
+            end)
+            M(P)
+        end
+        
+        K.PlayerAdded:Connect(O)
+        for _, Q in ipairs(K:GetPlayers()) do
+            O(Q)
+        end
+    else
+        a:MakeNotification({
+            Title = "Locked",
+            Content = "Please enter the correct key to unlock Anti features.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+end
+
+j:AddToggle({
+    Name = "Anti Ragdoll",
+    Default = false,
+    Callback = k
+})
+
+j:AddToggle({
+    Name = "Anti Freeze",
+    Default = false,
+    Callback = o
+})
+
+j:AddToggle({
+    Name = "Anti Slowed",
+    Default = false,
+    Callback = s
+})
+
+j:AddToggle({
+    Name = "Anti StopRunning",
+    Default = false,
+    Callback = w
+})
+
+j:AddToggle({
+    Name = "Anti NoJump",
+    Default = false,
+    Callback = A
+})
+
+j:AddToggle({
+    Name = "Anti NoBlock",
+    Default = false,
+    Callback = E
+})
+
+j:AddToggle({
+    Name = "Anti Counter",
+    Default = false,
+    Callback = I
+})
+
+local R = b:MakeTab({
+    Name = "Credits",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+R:AddLabel("Owner - Hawk")
+R:AddLabel("Phantom Hub")
+R:AddLabel("Hello Fix Bugs Report In Discord")
+
+R:AddButton({
+    Name = "Copy Discord Link",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        a:MakeNotification({
+            Title = "Copied",
+            Content = "Discord link copied to clipboard.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+})
+
+-- Dummy variables and functions to further obfuscate the code
+local dummy1, dummy2, dummy3 = true, 123, "obfuscate"
+local function dummyFunction1()
+    local x = 0
+    for i = 1, 10 do
+        x = x + i
+    end
+    return x
+end
+local function dummyFunction2(a, b)
+    return a + b
+end
+
+local S = dummyFunction1() + dummyFunction2(dummy2, 10)
+local dummy4 = "dummy" .. S
+local dummy5 = function() return "obfuscated" end
+local T = dummy5()
+
+local function randomObfuscate()
+    return dummy1 and dummy2 or dummy3
+end
+
+local U = randomObfuscate()
+
+-- Further dummy structure
+local function deepObfuscate()
+    local nested1 = "nested"
+    local function nestedObfuscate()
+        local nested2 = "deeply"
+        return nested1 .. nested2
+    end
+    return nestedObfuscate()
+end
+
+local V = deepObfuscate()
+
+-- Random no-op code
+local noop1, noop2, noop3 = false, 0, ""
+for i = 1, 5 do
+    noop2 = noop2 + i
+    noop3 = noop3 .. tostring(i)
+end
+
+local W = noop2 .. noop3 .. (noop1 and "true" or "false")
+
+print(W)  -- Print to further distract and obfuscate the code
+
+
