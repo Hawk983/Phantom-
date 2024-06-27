@@ -18,7 +18,7 @@ local encryptedKey = "Phantom1898"
 local encryptedDiscordURL = "u`k!ujxalbhdsj.moc/moc.s'cord//:ptth'/:ZW!BTD6kvwa"
 
 -- Decrypt encrypted strings
-local key = encryptDecrypt(encryptedKey, "secretkey")
+local key = encryptDecrypt(encryptedKey, "Phantom1898")
 local discordURL = encryptDecrypt(encryptedDiscordURL, "secretkey")
 
 -- Load external library
