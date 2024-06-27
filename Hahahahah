@@ -75,7 +75,7 @@ local function f(g)
 end
 
 e:AddButton({
-    Name = "No/Less Stun [Click Once]",
+    Name = "No/Less Stun | Click once ",
     Callback = f(function()
         local h = 0.3
         local i = game:GetService("RunService").Heartbeat
