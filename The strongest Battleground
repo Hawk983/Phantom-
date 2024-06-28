@@ -1,0 +1,376 @@
+local OrionLib = loadstring(game:HttpGet(table.concat({"https://","raw.github","usercontent.com/shlexware/","Orion/main/source"}, "")))()
+local Window = OrionLib:MakeWindow({
+    Name = "Phantom HUB | STRONGEST BATTLEGROUND",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "PhantomHubConfig",
+    IntroText = "Phantom Hub"
+})
+
+local key = "\80\104\97\110\116\111\109\50\49\48\53"
+local isUnlocked = false
+
+local KeyTab = Window:MakeTab({
+    Name = "\75\101\121",
+    Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+    PremiumOnly = false
+})
+
+KeyTab:AddTextbox({
+    Name = "\69\110\116\101\114\32\75\101\121",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(value)
+        if value == key then
+            isUnlocked = true
+            OrionLib:MakeNotification({
+                Title = "\83\117\99\99\101\115\115",
+                Content = "\75\101\121\32\105\115\32\99\111\114\114\101\99\116\33\32\83\99\114\105\112\116\32\117\110\108\111\99\107\101\100\46",
+                Image = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+                Time = 5
+            })
+        else
+            OrionLib:MakeNotification({
+                Title = "\69\114\114\111\114",
+                Content = "\73\110\99\111\114\114\101\99\116\32\107\101\121\46\32\80\108\101\97\115\101\32\116\114\121\32\97\103\97\105\110\46",
+                Image = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+                Time = 5
+            })
+        end
+    end
+})
+
+KeyTab:AddButton({
+    Name = "\67\111\112\121 \68\105\115\99\111\114\100 \76\105\110\107",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        OrionLib:MakeNotification({
+            Title = "\67\111\112\105\101\100",
+            Content = "\68\105\115\99\111\114\100 \108\105\110\107 \99\111\112\105\101\100 \116\111 \99\108\105\112\98\111\97\114\100.",
+            Image = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+            Time = 5
+        })
+    end
+})
+
+local MainTab = Window:MakeTab({
+    Name = "\77\97\105\110",
+    Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+    PremiumOnly = false
+})
+
+local function checkUnlock(callback)
+    return function(...)
+        if isUnlocked then
+            callback(...)
+        else
+            OrionLib:MakeNotification({
+                Title = "\76\111\99\107\101\100",
+                Content = "\80\108\101\97\115\101 \101\110\116\101\114 \116\104\101 \99\111\114\114\101\99\116 \107\101\121 \116\111 \117\110\108\111\99\107.",
+                Image = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+                Time = 5
+            })
+        end
+    end
+end
+
+MainTab:AddButton({
+    Name = "\78\111\47\76\101\115\115 \83\116\117\110 \91\67\108\105\99\107 \79\110\99\101\93",
+    Callback = checkUnlock(function()
+        local tspeed = 0.3
+        local hb = game:GetService("RunService").Heartbeat
+        local tpwalking = true
+        local player = game:GetService("Players").LocalPlayer
+        local chr = player.Character
+        
+        while tpwalking and hb:Wait() and chr and chr.Parent do
+            local hum = chr:FindFirstChildOfClass("Humanoid")
+            if hum and hum.MoveDirection.Magnitude > 0 then
+                if tspeed and tonumber(tspeed) then
+                    chr:TranslateBy(hum.MoveDirection * tonumber(tspeed))
+                else
+                    chr:TranslateBy(hum.MoveDirection)
+                end
+            end
+        end
+    end)
+})
+
+MainTab:AddButton({
+    Name = "\82\101\97\99\104",
+    Callback = checkUnlock(function()
+        print("\82\101\97\99\104 \86\97\108\117\101 \54\57")
+    end)
+})
+
+MainTab:AddButton({
+    Name = "\67\97\109\101\114\97 \76\111\99\107",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet(table.concat({"https://rentry.co/","forkoritothegoat/raw"}, "")))()
+    end)
+})
+
+MainTab:AddButton({
+    Name = "\73\110\102\105\110\105\116\101 \89\105\101\108\100",
+    Callback = checkUnlock(function()
+        loadstring(game:HttpGet(table.concat({"https://raw.github","usercontent.com/EdgeIY/","infiniteyield/master/source"}, "")))()
+    end)
+})
+
+MainTab:AddButton({
+    Name = "\69\115\112",
+    Callback = checkUnlock(function()
+        local Players = game:GetService("Players")
+        local RunService = game:GetService("RunService")
+
+        local function createBox()
+            local box = Instance.new("BoxHandleAdornment")
+            box.Size = Vector3.new(5, 5, 2)
+            box.Color3 = Color3.new(1, 0, 0)
+            box.Transparency = 0.1
+            box.ZIndex = 5
+            return box
+        end
+
+        local function updateEsp(player, box)
+            local character = player.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                box.Visible = true
+                box.Adornee = character.HumanoidRootPart
+                box.Parent = character.HumanoidRootPart
+            else
+                box.Visible = false
+                box.Adornee = nil
+                box.Parent = nil
+            end
+        end
+
+        local function onPlayerAdded(player)
+            local box = createBox()
+            updateEsp(player, box)
+
+            player.CharacterAdded:Connect(function()
+                updateEsp(player, box)
+            end)
+
+            player.CharacterRemoving:Connect(function()
+                updateEsp(player, box)
+            end)
+        end
+
+        for _, player in ipairs(Players:GetPlayers()) do
+            onPlayerAdded(player)
+        end
+
+        Players.PlayerAdded:Connect(function(player)
+            onPlayerAdded(player)
+        end)
+
+        RunService.RenderStepped:Connect(function()
+            for _, player in ipairs(Players:GetPlayers()) do
+                if player.Character then
+                    local box = player.Character:FindFirstChildOfClass("BoxHandleAdornment")
+                    if box then
+                        updateEsp(player, box)
+                    end
+                end
+            end
+        end)
+    end)
+})
+
+local MainHubTab = Window:MakeTab({
+    Name = "\77\97\105\110 \72\117\98",
+    Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+    PremiumOnly = false
+})
+
+MainHubTab:AddButton({
+    Name = "\75\105\108\108\101\114 \72\117\98",
+    Callback = function()
+        loadstring(game:HttpGet(table.concat({"https://pastefy.","app/74w2zF6p/raw"}, "")))()
+    end
+})
+
+MainHubTab:AddButton({
+    Name = "\66\69\68\79\76 \72\85\66",
+    Callback = function()
+        loadstring(game:HttpGet(table.concat({"https://raw.","githubusercontent.com/3345-c-a    -t-s-u-s/New-C4-Remote.lua/main/TSBG.jsx"}, "")))()
+    end
+})
+
+MainHubTab:AddButton({
+    Name = "\76\105\103\104\116 \116\117\120",
+    Callback = function()
+        loadstring(game:HttpGet(table.concat({"https://pastebin.com/raw/","zx3081xc"}, "")))()
+    end
+})
+
+local AntiTab = Window:MakeTab({
+    Name = "\65\110\116\105",
+    Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+    PremiumOnly = false
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \82\97\103\100\111\108\108",
+    Default = false,
+    Callback = checkUnlock(function(Value)
+        _G.antiragdoll = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiragdoll then
+                local character = game.Players.LocalPlayer.Character
+                if character and character:FindFirstChild("RagdollSim") then
+                    character.RagdollSim:Destroy()
+                    if character:FindFirstChild("Ragdoll") then
+                        character.Ragdoll:Destroy()
+                    end
+                end
+            end
+        end)
+    end)
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \70\114\101\101\122\101",
+    Default = false,
+    Callback = checkUnlock(function(Value)
+        _G.antifreeze = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antifreeze then
+                local character = game.Players.LocalPlayer.Character
+                if character and character:FindFirstChild("Freeze") then
+                    character.Freeze:Destroy()
+                end
+            end
+        end)
+    end)
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \83\108\111\119\101\100",
+    Default = false,
+    Callback = checkUnlock(function(Value)
+        _G.antislowed = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antislowed then
+                local character = game.Players.LocalPlayer.Character
+                if character and character:FindFirstChild("Slowed") then
+                    character.Slowed:Destroy()
+                end
+            end
+        end)
+    end)
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \83\116\111\112\82\117\110\110\105\110\103",
+    Default = false,
+    Callback = checkUnlock(function(Value)
+        _G.antiStopRunning = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiStopRunning then
+                local character = game.Players.LocalPlayer.Character
+                if character and character:FindFirstChild("StopRunning") then
+                    character.StopRunning:Destroy()
+                end
+            end
+        end)
+    end)
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \78\111\74\117\109\112",
+    Default = false,
+    Callback = checkUnlock(function(Value)
+        _G.antiNoJump = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiNoJump then
+                local character = game.Players.LocalPlayer.Character
+                if character and character:FindFirstChild("NoJump") then
+                    character.NoJump:Destroy()
+                end
+            end
+        end)
+    end)
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \78\111\66\108\111\99\107",
+    Default = false,
+    Callback = checkUnlock(function(Value)
+        _G.antiNoBlock = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiNoBlock then
+                local character = game.Players.LocalPlayer.Character
+                if character and character:FindFirstChild("NoBlock") then
+                    character.NoBlock:Destroy()
+                end
+            end
+        end)
+    end)
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \67\111\117\110\116\101\114",
+    Default = false,
+    Callback = checkUnlock(function(Value)
+        _G.anticounter = Value
+        local Players = game:GetService("Players")
+        local RunService = game:GetService("RunService")
+
+        local function toggleAntiCounter(player)
+            if player.Character and player.Character:FindFirstChild("Counter") then
+                player.Character.Counter:Destroy()
+            end
+        end
+
+        local function onPlayerAdded(player)
+            player.CharacterAdded:Connect(function()
+                toggleAntiCounter(player)
+            end)
+            toggleAntiCounter(player)
+        end
+
+        Players.PlayerAdded:Connect(onPlayerAdded)
+        for _, player in ipairs(Players:GetPlayers()) do
+            onPlayerAdded(player)
+        end
+    end)
+})
+
+local CreditsTab = Window:MakeTab({
+    Name = "\67\114\101\100\105\116\115",
+    Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+    PremiumOnly = false
+})
+
+CreditsTab:AddLabel("\79\119\110\101\114 \45 \72\97\119\107")
+CreditsTab:AddLabel("\80\104\97\110\116\111\109 \72\117\98")
+CreditsTab:AddLabel("\72\101\108\108\111 \70\105\120 \66\117\103\115 \82\101\112\111\114\116 \73\110 \68\105\115\99\111\114\100")
+
+CreditsTab:AddButton({
+    Name = "\67\111\112\121 \68\105\115\99\111\114\100 \76\105\110\107",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        OrionLib:MakeNotification({
+            Title = "\67\111\112\105\101\100",
+            Content = "\68\105\115\99\111\114\100 \108\105\110\107 \99\111\112\105\101\100 \116\111 \99\108\105\112\98\111\97\114\100.",
+            Image = "\114\98\120\97\115\115\101\116\105\100\58\47\47\52\52\56\51\51\52\53\57\57\56",
+            Time = 5
+        })
+    end
+})
+
