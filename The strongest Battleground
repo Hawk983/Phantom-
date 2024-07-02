@@ -113,7 +113,7 @@ MainTab:AddButton({
 MainTab:AddButton({
     Name = "\73\110\102\105\110\105\116\101 \89\105\101\108\100",
     Callback = checkUnlock(function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/69/EdgeIY/infiniteyield/master/source'))()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
     end)
 })
 
