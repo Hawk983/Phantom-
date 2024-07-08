@@ -1,47 +1,30 @@
-local p,q=loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))(),{}
+local p,q=loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source.lua"))(),{}
 p:MakeNotification({Name="Welcome to Phantom Hub",Content="Script unlocked.",Image="rbxassetid://4483345998",Time=5})
 local t=p:MakeWindow({Name="Phantom HUB | [UPDATE] SLAP BATTLES 🔥",HidePremium=false,SaveConfig=true,ConfigFolder="PhantomHubConfig",IntroText="Phantom Hub"})
-
-local w=t:MakeTab({Name="Credits",Icon="rbxassetid://4483345998",PremiumOnly=false})
-w:AddLabel("Owner - Hawk")
-w:AddLabel("Phantom Hub")
-w:AddLabel("Hello Fix Bugs Report In Discord")
-w:AddButton({Name="Copy Discord Link",Callback=function()setclipboard("https://discord.com/invite/ZwBTD6kvwa")p:MakeNotification({Name="Copied",Content="Discord link copied to clipboard.",Image="rbxassetid://4483345998",Time=5})end})
-
-local function x(y)return function(...) y(...) end end
-local z=t:MakeTab({Name="Main",Icon="rbxassetid://4483345998",PremiumOnly=false})
-z:AddButton({Name="Slap Battles Hub",Callback=x(function()loadstring(game:HttpGet("https://scriptblox.com/raw/Slap-Battles-Open-source-for-9484"))()end)})
-z:AddButton({Name="Glove Abuser GUI",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Donjosx/SlapBattle_Scripts/main/Glove-Multi%20Abuser%20Beta%20version"))()end)})
+local w=t:MakeTab({Name="Credits",Icon="rbxassetid://4483345998",PremiumOnly=false})w:AddLabel("Owner - Hawk")w:AddLabel("Phantom Hub")w:AddLabel("Hello Fix Bugs Report In Discord")w:AddButton({Name="Copy Discord Link",Callback=function()setclipboard("https://discord.com/invite/ZwBTD6kvwa")p:MakeNotification({Name="Copied",Content="Discord link copied to clipboard.",Image="rbxassetid://4483345998",Time=5})end})
+local function x(y)return function(...)y(...)end end
+local z=t:MakeTab({Name="Main",Icon="rbxassetid://4483345998",PremiumOnly=false})z:AddButton({Name="Slap Battles Hub",Callback=x(function()loadstring(game:HttpGet("https://scriptblox.com/raw/Slap-Battles-Open-source-for-9484"))()end)})
+z:AddButton({Name="Glove Abuser GUI",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Donjosx/SlapBattle_Scripts/main/Glove-Multi%20Abuser%20Beta%20version.lua"))()end)})
 z:AddButton({Name="Lag Server",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/destsecretplace/main/FELagServer.lua"))()end)})
-z:AddButton({Name="Destroyer Hub 🔥",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Usehsbd/DestroyerHub/main/DestHubPublic"))()end)})
-z:AddButton({Name="Slap Battles That Exists 💯",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles"))()end)})
-z:AddButton({Name="Gaster Hub 💪",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/TestMain/main/SLAPBATTLESGUI5"))()end)})
+z:AddButton({Name="Destroyer Hub 🔥",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Usehsbd/DestroyerHub/main/DestHubPublic.lua"))()end)})
+z:AddButton({Name="Slap Battles That Exists 💯",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles.lua"))()end)})
+z:AddButton({Name="Gaster Hub 💪",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/TestMain/main/SLAPBATTLESGUI5.lua"))()end)})
 z:AddButton({Name="Destroyer Hub ⚠️",Callback=x(function()loadstring(game:HttpGet("https://pastefy.app/lNrtZovg/raw"))()end)})
-
-local A=t:MakeTab({Name="Badge Giver",Icon="rbxassetid://4483345998",PremiumOnly=false})
-A:AddButton({Name="Gaster Hub",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/Null-zone3/main/Null%20zone"))()end)})
+local A=t:MakeTab({Name="Badge Giver",Icon="rbxassetid://4483345998",PremiumOnly=false})A:AddButton({Name="Gaster Hub",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/Null-zone3/main/Null%20zone.lua"))()end)})
 A:AddButton({Name="Spoonful Glove",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/destsecretplace/main/SpoonfulScript.lua"))()end)})
 A:AddButton({Name="Bob Farm 😎",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Aquoupi/DestroyerX/main/UltraBobFarm.lua"))()end)})
-
-local B=t:MakeTab({Name="Farm",Icon="rbxassetid://4483345998",PremiumOnly=false})
-B:AddButton({Name="Farm Scripts",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Aquoupi/DestroyerX/main/OtherSBScripts/FastFarmv2.lua"))()end)})
+local B=t:MakeTab({Name="Farm",Icon="rbxassetid://4483345998",PremiumOnly=false})B:AddButton({Name="Farm Scripts",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Aquoupi/DestroyerX/main/OtherSBScripts/FastFarmv2.lua"))()end)})
 B:AddButton({Name="Farm Script v2",Callback=x(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/patrociuq123/SBScript/main/SlappleFarmv2.lua"))()end)})
-
 w:AddButton({Name="Orion Lib",Callback=function()print("Orion Lib button pressed")end})
 w:AddButton({Name="Destroy UI",Callback=function()p:Destroy()end})
-
-local C=t:MakeTab({Name="Combat",Icon="rbxassetid://4483345998",PremiumOnly=false})
-C:AddButton({Name="Retro Hammer (with animation)",Callback=x(function()game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Assets.Retro.Animations["Ban Hammer"]):Play()wait(0.9)game:GetService("ReplicatedStorage").RetroAbility:FireServer("Ban Hammer")end)})
+local C=t:MakeTab({Name="Combat",Icon="rbxassetid://4483345998",PremiumOnly=false})C:AddButton({Name="Retro Hammer (with animation)",Callback=x(function()game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Assets.Retro.Animations["Ban Hammer"]):Play()wait(0.9)game:GetService("ReplicatedStorage").RetroAbility:FireServer("Ban Hammer")end)})
 C:AddButton({Name="Null Ability",Callback=x(function()game:GetService("ReplicatedStorage").NullAbility:FireServer()end)})
 C:AddButton({Name="Rhythm Explosion",Callback=x(function()game:GetService("ReplicatedStorage").rhythmevent:FireServer("AoeExplosion",0)end)})
 C:AddButton({Name="Rojo Attack",Callback=x(function()game:GetService("ReplicatedStorage"):WaitForChild("RojoAbility"):FireServer("Release",{game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame})end)})
 C:AddButton({Name="Retro Rocket (without animation)",Callback=x(function()game:GetService("ReplicatedStorage").RetroAbility:FireServer("Rocket Launcher")end)})
 C:AddButton({Name="Retro Hammer (without animation)",Callback=x(function()game:GetService("ReplicatedStorage").RetroAbility:FireServer("Ban Hammer")end)})
-C:AddButton({Name="Explode",Callback=x(function()local D=game.Players.LocalPlayer.Character
-game:GetService("ReplicatedStorage").RetroAbility:FireServer("Bomb")D.HumanoidRootPart:WaitForChild("BodyVelocity"):Destroy()end)})
-
-local E=t:MakeTab({Name="Animation",Icon="rbxassetid://4483345998",PremiumOnly=false})
-E:AddButton({Name="Stop Animations",Callback=x(function()local F=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for G,H in ipairs(F)do H:Stop()end end)})
+C:AddButton({Name="Explode",Callback=x(function()local D=game.Players.LocalPlayer.Character game:GetService("ReplicatedStorage").RetroAbility:FireServer("Bomb")D.HumanoidRootPart:WaitForChild("BodyVelocity"):Destroy()end)})
+local E=t:MakeTab({Name="Animation",Icon="rbxassetid://4483345998",PremiumOnly=false})E:AddButton({Name="Stop Animations",Callback=x(function()local F=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for G,H in ipairs(F)do H:Stop()end end)})
 E:AddToggle({Name="Thriller",Default=false,Callback=x(function(I)G.isDancing=I if I then game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller):Play()else local J=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for K,L in ipairs(J)do L:Stop()end end end)})
 E:AddToggle({Name="Kick",Default=false,Callback=x(function(M)G.isDancing=M if M then game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):LoadAnimation(game.ReplicatedStorage.AnimationPack.Kick):Play()else local N=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for O,P in ipairs(N)do P:Stop()end end end)})
 E:AddToggle({Name="L",Default=false,Callback=x(function(Q)G.isDancing=Q if Q then game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):LoadAnimation(game.ReplicatedStorage.AnimationPack.L):Play()else local R=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for S,T in ipairs(R)do T:Stop()end end end)})
@@ -49,4 +32,5 @@ E:AddToggle({Name="Parker",Default=false,Callback=x(function(U)G.isDancing=U if 
 E:AddToggle({Name="Spasm",Default=false,Callback=x(function(Y)G.isDancing=Y if Y then game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm):Play()else local Z=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for aa,ab in ipairs(Z)do ab:Stop()end end end)})
 E:AddToggle({Name="Groove",Default=false,Callback=x(function(ac)G.isDancing=ac if ac then game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):LoadAnimation(game.ReplicatedStorage.AnimationPack.Groove):Play()else local ad=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for ae,af in ipairs(ad)do af:Stop()end end end)})
 E:AddToggle({Name="Headless",Default=false,Callback=x(function(ag)G.isDancing=ag if ag then game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):LoadAnimation(game.ReplicatedStorage.AnimationPack.Headless):Play()else local ah=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for ai,aj in ipairs(ah)do aj:Stop()end end end)})
-E:AddToggle({Name="Helicopter",Default=false,Callback=x(function(ak)G.isDancing=ak if ak then game.Players.LocalPlayer.Character.Hum
+E:AddToggle({Name="Helicopter",Default=false,Callback=x(function(ak)G.isDancing=ak if ak then game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):LoadAnimation(game.ReplicatedStorage.AnimationPack.Helicopter):Play()else local al=game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()for am,an in ipairs(al)do an:Stop()end end end)})
+w:AddButton({Name="Destroy UI",Callback=function()p:Destroy()end})
