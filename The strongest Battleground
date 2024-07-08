@@ -237,3 +237,78 @@ AntiTab:AddToggle({
             if _G.antiNoJump == true then
                 local character = game.Players.LocalPlayer.Character
                 if character and character:FindFirstChild("NoJump") then
+                    character:FindFirstChild("NoJump"):Destroy()
+                end
+            end
+        end)
+    end
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \78\111\66\108\111\99\107",
+    Default = false,
+    Callback = function(Value)
+        _G.antiNoBlock = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiNoBlock == true then
+                local character = game.Players.LocalPlayer.Character
+                if character and character:FindFirstChild("NoBlock") then
+                    character:FindFirstChild("NoBlock"):Destroy()
+                end
+            end
+        end)
+    end
+})
+
+AntiTab:AddToggle({
+    Name = "\65\110\116\105 \67\111\117\110\116\101\114",
+    Default = false,
+    Callback = function(Value)
+        _G.anticounter = Value
+        local Players = game:GetService("Players")
+        local RunService = game:GetService("RunService")
+
+        local function toggleAntiCounter(player)
+            if player.Character and player.Character:FindFirstChild("Counter") then
+                player.Character:FindFirstChild("Counter"):Destroy()
+            end
+        end
+
+        local function onPlayerAdded(player)
+            player.CharacterAdded:Connect(function()
+                toggleAntiCounter(player)
+            end)
+            toggleAntiCounter(player)
+        end
+
+        Players.PlayerAdded:Connect(onPlayerAdded)
+        for _, player in ipairs(Players:GetPlayers()) do
+            onPlayerAdded(player)
+        end
+    end
+})
+
+local CreditsTab = Window:MakeTab({
+    Name = "\67\114\101\100\105\116\115",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+CreditsTab:AddLabel("\79\119\110\101\114 \45 \72\97\119\107")
+CreditsTab:AddLabel("\80\104\97\110\116\111\109\32\72\117\98")
+CreditsTab:AddLabel("\72\101\108\108\111 \70\105\120 \66\117\103\115 \82\101\112\111\114\116 \73\110 \68\105\115\99\111\114\100")
+
+CreditsTab:AddButton({
+    Name = "\67\111\112\121\32\68\105\115\99\111\114\100\32\76\105\110\107",
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        OrionLib:MakeNotification({
+            Title = "\67\111\112\105\101\100",
+            Content = "\68\105\115\99\111\114\100\32\108\105\110\107\32\99\111\112\105\101\100\32\116\111\32\99\108\105\112\98\111\97\114\100\46",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+})
