@@ -75,7 +75,7 @@ KeyTab:AddButton({
 			PhantomHubUniversalTab:AddButton({
 				Name = "Phantom HUB | The Strongest Battleground",
 				Callback = function()
-					loadstring(game:HttpGet("https://raw.githubusercontent.com/HEHE0977778/Phantom-hubs/main/Keyless%20blade%20ball"))()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/The%20strongest%20Battleground"))()
 				end
 			})
 		else
