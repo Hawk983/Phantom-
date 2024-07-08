@@ -1,0 +1,103 @@
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+local Window = OrionLib:MakeWindow({
+	Name = "Phantom HUB | UNIVERSAL",
+	HidePremium = false,
+	SaveConfig = true,
+	ConfigFolder = "OrionTest",
+	IntroText = "Loading Script..."
+})
+
+-- Key system
+local Key = "Phantom131248"
+local EnteredKey = ""
+
+local KeyTab = Window:MakeTab({
+	Name = "Key System",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+KeyTab:AddTextbox({
+	Name = "Enter Key",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(value)
+		EnteredKey = value
+	end
+})
+
+KeyTab:AddButton({
+	Name = "Submit Key",
+	Callback = function()
+		if EnteredKey == Key then
+			OrionLib:MakeNotification({
+				Name = "Success",
+				Content = "Key accepted!",
+				Image = "rbxassetid://4483345998",
+				Time = 5
+			})
+
+			-- Phantom HUB | UNIVERSAL Tab
+			local PhantomHubUniversalTab = Window:MakeTab({
+				Name = "Phantom HUB | UNIVERSAL",
+				Icon = "rbxassetid://4483345998",
+				PremiumOnly = false
+			})
+
+			PhantomHubUniversalTab:AddButton({
+				Name = "Phantom HUB | BLADE BALL",
+				Callback = function()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/HEHE0977778/Phantom-hubs/main/Keyless%20blade%20ball"))()
+				end
+			})
+
+			PhantomHubUniversalTab:AddButton({
+				Name = "Phantom HUB | Blox Fruit",
+				Callback = function()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/thaibao/main/Phantom"))()
+				end
+			})
+
+			PhantomHubUniversalTab:AddButton({
+				Name = "Phantom HUB | Slap battles 👏",
+				Callback = function()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/Slap%20battles%20is%20back!%20With%20update"))()
+				end
+			})
+
+			PhantomHubUniversalTab:AddButton({
+				Name = "Phantom HUB | Break in 2",
+				Callback = function()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/Phantom%20HUB"))()
+				end
+			})
+
+			PhantomHubUniversalTab:AddButton({
+				Name = "Phantom HUB | The Strongest Battleground",
+				Callback = function()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/HEHE0977778/Phantom-hubs/main/Keyless%20blade%20ball"))()
+				end
+			})
+		else
+			OrionLib:MakeNotification({
+				Name = "Error",
+				Content = "Invalid key!",
+				Image = "rbxassetid://4483345998",
+				Time = 5
+			})
+		end
+	end
+})
+
+KeyTab:AddButton({
+	Name = "Copy Discord Link",
+	Callback = function()
+		setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+		OrionLib:MakeNotification({
+			Name = "Copied",
+			Content = "Discord link copied to clipboard.",
+			Image = "rbxassetid://4483345998",
+			Time = 5
+		})
+	end
+})
