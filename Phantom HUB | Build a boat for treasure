@@ -1,0 +1,272 @@
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+local Window = OrionLib:MakeWindow({
+    Name = decodeObfuscated("\80\104\97\110\116\111\109\32\72\85\66\32\124\32\83\84\82\79\78\71\69\83\84\32\66\65\84\84\76\69\71\82\79\85\78\68"),
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "PhantomHubConfig",
+    IntroText = "Phantom Hub"
+})
+
+local isUnlocked = true  -- Assume unlocked by default
+
+-- Unlock the rest of the script
+addUnlockedTabs()
+
+-- Function to decode obfuscated strings
+function decodeObfuscated(obfuscatedString)
+    local decodedString = ""
+    for w in obfuscatedString:gmatch("%d+") do
+        decodedString = decodedString .. string.char(tonumber(w))
+    end
+    return decodedString
+end
+
+-- Function to add tabs when unlocked
+function addUnlockedTabs()
+    local af = Window:MakeTab({
+        Name = decodeObfuscated("\65\117\116\111\102\97\114\109"),
+        Icon = "rbxassetid://4384394237",
+        PremiumOnly = false
+    })
+    af:AddParagraph("Don't move when autofarm is on")
+    af:AddButton({
+        Name = decodeObfuscated("\69\110\97\98\108\101\32\65\117\116\111\102\97\114\109"),
+        Callback = function()
+            OrionLib:MakeNotification({
+                Name = decodeObfuscated("\80\104\97\110\116\111\109\32\72\85\66\32\124\32\79\78\32\84\79\80"),
+                Content = "The autofarm has been enabled",
+                Image = "rbxassetid://4483362748",
+                Time = 5
+            })
+            -- Your autofarm logic here
+        end    
+    })
+    
+    local plr = Window:MakeTab({
+        Name = decodeObfuscated("\80\108\97\121\101\114"),
+        Icon = "rbxassetid://4335480896",
+        PremiumOnly = false
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\65\100\109\105\110\32\67\111\109\109\97\110\100\115"),
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\69\83\80"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20ESP.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\70\108\121"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Fly.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\66\108\111\99\107\32\72\101\97\100"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Blockhead.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\65\110\116\105\32\65\70\75"),
+        Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/EckwsPpK"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\82\101\109\111\118\101\32\76\101\103\115"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Remove%20Legs.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\70\108\111\97\116\32\67\104\97\114\97\99\116\101\114"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Float%20Character.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\82\101\109\111\118\101\32\65\114\109\115"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Remove%20Arms.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\73\110\118\105\115\105\98\108\101\32\67\104\97\114\97\99\116\101\114"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Invisible%20Character.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\84\111\103\103\108\101\32\78\105\103\104\116\32\84\105\109\101"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Night%20Time%20Toggle.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\76\105\109\112\32\67\104\97\114\97\99\116\101\114"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Limp%20Character.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\70\108\97\115\104\108\105\103\104\116"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Human%20Flashlight.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\67\116\114\108\32\67\108\105\99\107\32\84\101\108\101\112\111\114\116"),
+        Callback = function()
+            local Player = game.Players.LocalPlayer
+            local Mouse = Player:GetMouse()
+            local UserInputService = game:GetService('UserInputService')
+
+            local HoldingControl = false
+
+            Mouse.Button1Down:Connect(function()
+                if HoldingControl then
+                    Player.Character:MoveTo(Mouse.Hit.p)
+                end
+            end)
+
+            UserInputService.InputBegan:Connect(function(Input, Processed)
+                if Input.UserInputType == Enum.UserInputType.Keyboard then
+                    if Input.KeyCode == Enum.KeyCode.LeftControl or Input.KeyCode == Enum.KeyCode.RightControl then
+                        HoldingControl = true
+                    end
+                end
+            end)
+
+            UserInputService.InputEnded:Connect(function(Input, Processed)
+                if Input.UserInputType == Enum.UserInputType.Keyboard then
+                    if Input.KeyCode == Enum.KeyCode.LeftControl or Input.KeyCode == Enum.KeyCode.RightControl then
+                        HoldingControl = false
+                    end
+                end
+            end)
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\72\105\103\104\32\72\105\112\115"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/High%20Hips.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\66\116\111\111\108\115"),
+        Callback = function()
+            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
+        end    
+    })
+    plr:AddButton({
+        Name = decodeObfuscated("\73\110\102\105\110\105\116\101\32\74\117\109\112"),
+        Callback = function()
+            local Player = game:GetService'Players'.LocalPlayer
+            local UIS = game:GetService'UserInputService'
+
+            _G.JumpHeight = 50
+
+            function Action(Object, Function)
+                if Object ~= nil then
+                    Function(Object)
+                end
+            end
+
+            UIS.InputBegan:connect(function(UserInput)
+                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
+                    Action(Player.Character.Humanoid, function(self)
+                        if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
+                            Action(self.Parent.HumanoidRootPart, function(self)
+                                self.Velocity = Vector3.new(0, _G.JumpHeight, 0)
+                            end)
+                        end
+                    end)
+                end
+            end)
+        end    
+    })
+    
+    local tps = Window:MakeTab({
+        Name = decodeObfuscated("\84\101\108\101\112\111\114\116\115"),
+        Icon = "rbxassetid://4370317928",
+        PremiumOnly = false
+    })
+    local tps = Window:MakeTab({
+    Name = decodeObfuscated("\84\101\108\101\112\111\114\116\115"),
+    Icon = "rbxassetid://4370317928",
+    PremiumOnly = false
+})
+tps:AddButton({
+    Name = decodeObfuscated("\66\108\97\99\107\32\84\101\97\109"),
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-487.4410095214844, -8.700004577636719, -69.6186752319336)
+    end    
+})
+tps:AddButton({
+    Name = decodeObfuscated("\82\101\100\32\84\101\97\109"),
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(380.062744140625, -8.700003623962402, -65.69831848144531)
+    end    
+})
+tps:AddButton({
+    Name = decodeObfuscated("\87\104\105\116\101\32\84\101\97\109"),
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-49.7816162109375, -8.700002670288086, -506.6413879394531)
+    end    
+})
+tps:AddButton({
+    Name = decodeObfuscated("\71\114\101\101\110\32\84\101\97\109"),
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-485.1761779785156, -8.700004577636719, 293.20465087890625)
+    end    
+})
+tps:AddButton({
+    Name = decodeObfuscated("\89\101\108\108\111\119\32\84\101\97\109"),
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-490.3713684082031, -8.700002670288086, 640.9750366210938)
+    end    
+})
+tps:AddButton({
+    Name = decodeObfuscated("\66\108\117\101\32\84\101\97\109"),
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(382.0494384765625, -8.700002670288086, 301.25469970703125)
+    end    
+})
+tps:AddButton({
+    Name = decodeObfuscated("\80\117\114\112\108\101\32\84\101\97\109"),
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(380.6820373535156, -8.700003623962402, 647.3969116210938)
+    end    
+})
+
+local credits = Window:MakeTab({
+    Name = decodeObfuscated("\80\104\97\110\116\111\109\50\49\48\51"),
+    Icon = "rbxassetid://4370344717",
+    PremiumOnly = false
+})
+credits:AddButton({
+    Name = decodeObfuscated("\67\82\69\68\73\84\32\80\104\97\110\116\111\109\50\49\48\51"),
+    Callback = function()
+        setclipboard("")
+    end    
+})
+
+credits:AddButton({
+    Name = decodeObfuscated("\67\111\112\121\32\68\105\115\99\111\114\100\32\76\105\110\107"),
+    Callback = function()
+        setclipboard("https://discord.com/invite/ZwBTD6kvwa")
+        OrionLib:MakeNotification({
+            Title = "Copied",
+            Content = "Discord link copied to clipboard.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+})
+
+
