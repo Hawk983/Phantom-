@@ -2,7 +2,7 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({
-    Name = "Phantom HUB | UNIVERSAL",
+    Name = "ProCheat EXE | UNIVERSAL",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "OrionTest",
@@ -58,31 +58,31 @@ KeyTab:AddButton({
                 end
             })
             PhantomHubUniversalTab:AddButton({
-                Name = "Phantom HUB | Blox Fruit",
+                Name = "ProCheat EXE| Blox Fruit",
                 Callback = function()
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/thaibao/main/Phantom"))()
                 end
             })
             PhantomHubUniversalTab:AddButton({
-                Name = "Phantom HUB | Slap battles",
+                Name = "ProCheat EXE | Slap battles",
                 Callback = function()
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/Slap%20battles%20is%20back!%20With%20update"))()
                 end
             })
             PhantomHubUniversalTab:AddButton({
-                Name = "Phantom HUB | Break in 2",
+                Name = "ProCheat EXE | Break in 2",
                 Callback = function()
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/Phantom%20HUB"))()
                 end
             })
             PhantomHubUniversalTab:AddButton({
-                Name = "Phantom HUB | The Strongest Battleground",
+                Name = "ProCheat EXE | The Strongest Battleground",
                 Callback = function()
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/The%20Strongest%20Battleground"))()
                 end
             })
 PhantomHubUniversalTab:AddButton({
-                Name = "Phantom HUB | Rivals New Release!",
+                Name = "ProCheat EXE | Rivals New Release!",
                 Callback = function()
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/Rivals"))()
                 end
