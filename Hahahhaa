@@ -1,0 +1,128 @@
+-- Load OrionLib
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+
+local Window = OrionLib:MakeWindow({
+    Name = "Phantom HUB | UNIVERSAL",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "OrionTest",
+    IntroText = "Loading Script..."
+})
+
+-- Key system
+local Key = "Lance23"
+local EnteredKey = ""
+
+-- Create a tab for Key System
+local KeyTab = Window:MakeTab({
+    Name = "Key System",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+-- Add a textbox for entering the key
+KeyTab:AddTextbox({
+    Name = "Enter Key",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(value)
+        EnteredKey = value
+    end
+})
+
+-- Add a button to submit the key
+KeyTab:AddButton({
+    Name = "Submit Key",
+    Callback = function()
+        if EnteredKey == Key then
+            -- Notification for successful key entry
+            OrionLib:MakeNotification({
+                Name = "Success",
+                Content = "Key accepted!",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+
+            -- Create a tab for Phantom HUB | UNIVERSAL
+            local PhantomHubUniversalTab = Window:MakeTab({
+                Name = "Phantom HUB | UNIVERSAL",
+                Icon = "rbxassetid://4483345998",
+                PremiumOnly = false
+            })
+
+            -- Add buttons for different functionalities
+            PhantomHubUniversalTab:AddButton({
+                Name = "Phantom HUB | BLADE BALL",
+                Callback = function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/HEHE0977778/Phantom-hubs/main/Keyless%20blade%20ball"))()
+                end
+            })
+            PhantomHubUniversalTab:AddButton({
+                Name = "Phantom HUB | Blox Fruit",
+                Callback = function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/thaibao/main/Phantom"))()
+                end
+            })
+            PhantomHubUniversalTab:AddButton({
+                Name = "Phantom HUB | Slap battles",
+                Callback = function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/Slap%20battles%20is%20back!%20With%20update"))()
+                end
+            })
+            PhantomHubUniversalTab:AddButton({
+                Name = "Phantom HUB | Break in 2",
+                Callback = function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/Phantom%20HUB"))()
+                end
+            })
+            PhantomHubUniversalTab:AddButton({
+                Name = "Phantom HUB | The Strongest Battleground",
+                Callback = function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/The%20Strongest%20Battleground"))()
+                end
+            })
+PhantomHubUniversalTab:AddButton({
+                Name = "Phantom HUB | Rivals New Release!",
+                Callback = function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/main/Rivals"))()
+                end
+            })
+        else
+            -- Notification for invalid key
+            OrionLib:MakeNotification({
+                Name = "Error",
+                Content = "Invalid key!",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
+    end
+})
+
+-- Add a button to copy Discord link
+KeyTab:AddButton({
+    Name = "Copy Discord Link",
+    Callback = function()
+        setclipboard("https://discord.gg/4w88YsFa")
+        OrionLib:MakeNotification({
+            Name = "Copied",
+            Content = "Discord link copied to clipboard.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+})
+
+-- Add a button to get the key link in the KeyTab
+KeyTab:AddButton({
+    Name = "Get Key Link",
+    Callback = function()
+        setclipboard("https://link-target.net/1206809/phantom-hub-key")
+        OrionLib:MakeNotification({
+            Name = "Copied",
+            Content = "Key link copied to clipboard.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+})
