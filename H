@@ -176,7 +176,7 @@ task.spawn(
         main:Button(
             "Credits",
             function()
-                discord:Notification("Credits", "created by chel, maintained by redblue", "Okay!")
+                discord:Notification("Credits", "created by Phantom, maintained by Hawk", "Enjoy!")
             end
         )
         local ugc = serv:Channel("UGC Limiteds")
