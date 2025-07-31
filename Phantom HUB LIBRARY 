@@ -1,0 +1,114 @@
+-- Phantom HUB Library
+local PhantomHUB = {}
+
+function PhantomHUB:CreateWindow(titleText)
+    local screenGui = Instance.new("ScreenGui", game.CoreGui)
+    screenGui.Name = "PhantomHUB"
+
+    local mainFrame = Instance.new("Frame", screenGui)
+    mainFrame.Size = UDim2.new(0, 400, 0, 300)
+    mainFrame.Position = UDim2.new(0.5, -200, 0.5, -150)
+    mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    mainFrame.BorderSizePixel = 0
+    Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 10)
+
+    local title = Instance.new("TextLabel", mainFrame)
+    title.Size = UDim2.new(1, 0, 0, 40)
+    title.Text = titleText
+    title.BackgroundTransparency = 1
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.Font = Enum.Font.GothamBold
+    title.TextSize = 20
+
+    local tabFrame = Instance.new("Frame", mainFrame)
+    tabFrame.Size = UDim2.new(0, 100, 1, -40)
+    tabFrame.Position = UDim2.new(0, 0, 0, 40)
+    tabFrame.BackgroundTransparency = 1
+
+    local contentFrame = Instance.new("Frame", mainFrame)
+    contentFrame.Size = UDim2.new(1, -100, 1, -40)
+    contentFrame.Position = UDim2.new(0, 100, 0, 40)
+    contentFrame.BackgroundTransparency = 1
+
+    local tabs = {}
+
+    function PhantomHUB:CreateTab(tabName)
+        local tabButton = Instance.new("TextButton", tabFrame)
+        tabButton.Size = UDim2.new(1, 0, 0, 30)
+        tabButton.Text = tabName
+        tabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        tabButton.TextColor3 = Color3.new(1, 1, 1)
+        tabButton.Font = Enum.Font.Gotham
+        tabButton.TextSize = 14
+        Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 5)
+
+        local tabContent = Instance.new("ScrollingFrame", contentFrame)
+        tabContent.Size = UDim2.new(1, 0, 1, 0)
+        tabContent.CanvasSize = UDim2.new(0, 0, 10, 0)
+        tabContent.BackgroundTransparency = 1
+        tabContent.Visible = false
+
+        local layout = Instance.new("UIListLayout", tabContent)
+        layout.Padding = UDim.new(0, 6)
+        layout.SortOrder = Enum.SortOrder.LayoutOrder
+
+        tabs[tabName] = tabContent
+
+        tabButton.MouseButton1Click:Connect(function()
+            for _, frame in pairs(tabs) do
+                frame.Visible = false
+            end
+            tabContent.Visible = true
+        end)
+
+        return tabContent
+    end
+
+    function PhantomHUB:CreateToggle(tab, labelText, callback)
+        local frame = Instance.new("Frame", tab)
+        frame.Size = UDim2.new(1, -10, 0, 30)
+        frame.BackgroundTransparency = 1
+
+        local label = Instance.new("TextLabel", frame)
+        label.Size = UDim2.new(0.6, 0, 1, 0)
+        label.Text = labelText
+        label.Font = Enum.Font.Gotham
+        label.TextColor3 = Color3.new(1, 1, 1)
+        label.BackgroundTransparency = 1
+        label.TextXAlignment = Enum.TextXAlignment.Left
+
+        local toggle = Instance.new("TextButton", frame)
+        toggle.Size = UDim2.new(0.4, 0, 1, 0)
+        toggle.Position = UDim2.new(0.6, 0, 0, 0)
+        toggle.Text = "OFF"
+        toggle.Font = Enum.Font.Gotham
+        toggle.TextColor3 = Color3.new(1, 1, 1)
+        toggle.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+        Instance.new("UICorner", toggle).CornerRadius = UDim.new(0, 5)
+
+        local state = false
+
+        toggle.MouseButton1Click:Connect(function()
+            state = not state
+            toggle.Text = state and "ON" or "OFF"
+            toggle.BackgroundColor3 = state and Color3.fromRGB(0, 80, 0) or Color3.fromRGB(80, 0, 0)
+            callback(state)
+        end)
+    end
+
+    function PhantomHUB:CreateButton(tab, labelText, callback)
+        local btn = Instance.new("TextButton", tab)
+        btn.Size = UDim2.new(1, -10, 0, 30)
+        btn.Text = labelText
+        btn.Font = Enum.Font.Gotham
+        btn.TextColor3 = Color3.new(1, 1, 1)
+        btn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 5)
+
+        btn.MouseButton1Click:Connect(callback)
+    end
+
+    return self
+end
+
+return PhantomHUB
