@@ -1,0 +1,88 @@
+local HttpService = game:GetService("HttpService")
+local player = game.Players.LocalPlayer
+
+-- 🌐 Your Replit Key Server URL
+local server = "https://50df830f-9931-4305-b23e-bb9f690a50ac-00-2yhhj6mo3ks2r.sisko.replit.dev"
+local token = "phantom🔥lock"
+
+-- 🔑 Default Key (in case request fails)
+local fetchedKey = "INVALID"
+
+-- 🛜 Try to fetch latest key from server
+local success, response = pcall(function()
+	local data = game:HttpGet(server.."/key?token="..HttpService:UrlEncode(token))
+	return HttpService:JSONDecode(data)
+end)
+
+if success and response and response.key then
+	fetchedKey = response.key
+	print("✅ Key loaded:", fetchedKey)
+else
+	warn("❌ Failed to fetch key.")
+end
+
+-- 🧱 GUI
+local keyGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+keyGui.Name = "KeyUI"
+keyGui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame", keyGui)
+frame.Size = UDim2.new(0, 288, 0, 144)
+frame.Position = UDim2.new(0.5, -144, 0.5, -72)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 10)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1, 0, 0, 24)
+title.Position = UDim2.new(0, 0, 0, 6)
+title.BackgroundTransparency = 1
+title.Text = "Enter Phantom Key"
+title.Font = Enum.Font.GothamBold
+title.TextSize = 18
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+local input = Instance.new("TextBox", frame)
+input.PlaceholderText = "Example: a1b2c3-xxxx-xxxx-xxxx_PTM-HB"
+input.Size = UDim2.new(1, -20, 0, 26)
+input.Position = UDim2.new(0, 10, 0, 38)
+input.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+input.TextColor3 = Color3.new(1, 1, 1)
+input.Font = Enum.Font.Gotham
+input.TextSize = 14
+input.Text = ""
+Instance.new("UICorner", input).CornerRadius = UDim.new(0, 6)
+
+local status = Instance.new("TextLabel", frame)
+status.Size = UDim2.new(1, -20, 0, 20)
+status.Position = UDim2.new(0, 10, 0, 68)
+status.BackgroundTransparency = 1
+status.Text = "🔒 Locked"
+status.Font = Enum.Font.Gotham
+status.TextSize = 14
+status.TextColor3 = Color3.fromRGB(255, 80, 80)
+
+local submit = Instance.new("TextButton", frame)
+submit.Size = UDim2.new(1, -20, 0, 28)
+submit.Position = UDim2.new(0, 10, 0, 98)
+submit.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+submit.TextColor3 = Color3.new(1, 1, 1)
+submit.Font = Enum.Font.Gotham
+submit.TextSize = 16
+submit.Text = "Submit Key"
+Instance.new("UICorner", submit).CornerRadius = UDim.new(0, 8)
+
+submit.MouseButton1Click:Connect(function()
+	if input.Text == fetchedKey then
+		status.Text = "✅ Correct Key!"
+		status.TextColor3 = Color3.fromRGB(0, 255, 100)
+		wait(0.5)
+		keyGui:Destroy()
+		loadstring(game:HttpGet("https://pastebin.com/raw/YourSecondGuiCode"))() -- 👈 Replace this
+	else
+		status.Text = "❌ Incorrect Key"
+		status.TextColor3 = Color3.fromRGB(255, 80, 80)
+	end
+end)
