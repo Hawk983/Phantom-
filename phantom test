@@ -1,14 +1,14 @@
 local HttpService = game:GetService("HttpService")
 local player = game.Players.LocalPlayer
 
--- 🌐 Your Replit Key Server URL
+-- 🌐 Phantom Key Server & Token
 local server = "https://50df830f-9931-4305-b23e-bb9f690a50ac-00-2yhhj6mo3ks2r.sisko.replit.dev"
 local token = "phantom🔥lock"
 
--- 🔑 Default Key (in case request fails)
+-- 🔑 Default fallback key
 local fetchedKey = "INVALID"
 
--- 🛜 Try to fetch latest key from server
+-- 🛜 Fetch key from Replit server
 local success, response = pcall(function()
 	local data = game:HttpGet(server.."/key?token="..HttpService:UrlEncode(token))
 	return HttpService:JSONDecode(data)
@@ -16,12 +16,12 @@ end)
 
 if success and response and response.key then
 	fetchedKey = response.key
-	print("✅ Key loaded:", fetchedKey)
+	print("✅ Fetched Key:", fetchedKey)
 else
 	warn("❌ Failed to fetch key.")
 end
 
--- 🧱 GUI
+-- 🧱 GUI Elements
 local keyGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 keyGui.Name = "KeyUI"
 keyGui.ResetOnSpawn = false
@@ -45,7 +45,7 @@ title.TextSize = 18
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 
 local input = Instance.new("TextBox", frame)
-input.PlaceholderText = "Example: a1b2c3-xxxx-xxxx-xxxx_PTM-HB"
+input.PlaceholderText = "Paste Phantom Key"
 input.Size = UDim2.new(1, -20, 0, 26)
 input.Position = UDim2.new(0, 10, 0, 38)
 input.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -74,13 +74,16 @@ submit.TextSize = 16
 submit.Text = "Submit Key"
 Instance.new("UICorner", submit).CornerRadius = UDim.new(0, 8)
 
+-- 🎯 Key validation
 submit.MouseButton1Click:Connect(function()
 	if input.Text == fetchedKey then
 		status.Text = "✅ Correct Key!"
 		status.TextColor3 = Color3.fromRGB(0, 255, 100)
 		wait(0.5)
 		keyGui:Destroy()
-		loadstring(game:HttpGet("https://pastebin.com/raw/YourSecondGuiCode"))() -- 👈 Replace this
+
+		-- 🚀 Load Phantom GUI from GitHub
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Hawk983/Phantom-/refs/heads/main/Phantom%20HUB%20%7C%20Strongest%20Battleground.."))()
 	else
 		status.Text = "❌ Incorrect Key"
 		status.TextColor3 = Color3.fromRGB(255, 80, 80)
