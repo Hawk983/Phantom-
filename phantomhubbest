@@ -31,7 +31,7 @@ local Humanoid = Character:WaitForChild("Humanoid")
 local RootPart = Character:WaitForChild("HumanoidRootPart")
 
 -- KEY
-local API_KEY = "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"
+local API_KEY = "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"
 
 local BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
 local AI_MODEL = "openai/gpt-4o" 
